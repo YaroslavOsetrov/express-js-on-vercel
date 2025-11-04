@@ -11,11 +11,9 @@ const app = express();
 app.use(express.json());
 
 app.post('/', (req, res) => {
-  const data = req.body;
-  console.log('Received data:', data);
 
-  axios.post('https://hooks.zapier.com/hooks/catch/1943072/us6x64p', req.body).then(data => {
-    res.json(data);
+  axios.post('https://hooks.zapier.com/hooks/catch/1943072/us6x64p', req.body).then(response => {
+    res.json(response.data);
   });
 });
 
