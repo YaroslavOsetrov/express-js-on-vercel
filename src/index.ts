@@ -1,11 +1,23 @@
 import express from 'express'
 import path from 'path'
+import axios from 'axios';
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const app = express()
+const app = express();
+
+app.use(express.json());
+
+app.post('/', (req, res) => {
+  const data = req.body;
+  console.log('Received data:', data);
+
+  axios.post('https://hooks.zapier.com/hooks/catch/1943072/us6x64p', req.body).then(data => {
+    res.json(data);
+  });
+});
 
 // Home route - HTML
 app.get('/', (req, res) => {
